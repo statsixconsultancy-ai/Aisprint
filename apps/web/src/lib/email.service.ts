@@ -48,6 +48,9 @@ function createTransporter(): Transporter {
       user,
       pass,
     },
+    tls: {
+      rejectUnauthorized: false, // 🔥 FIXES SELF-SIGNED CERT ERROR ON VERCEL
+    },
   })
 
   return transporter
@@ -75,13 +78,13 @@ async function sendEmail(options: EmailOptions): Promise<boolean> {
     console.log("✅ EMAIL SENT:", info.response)
     return true
   } catch (error: any) {
-    console.error("❌ EMAIL ERROR:", error.message)
-    throw error // IMPORTANT: do not hide error
+    console.error("❌ EMAIL ERROR:", error)
+    throw error
   }
 }
 
 // ─────────────────────────────────────────────
-// Admin Email
+// Admin Notification Email
 // ─────────────────────────────────────────────
 
 export async function sendAdminNotification(
@@ -111,7 +114,7 @@ export async function sendAdminNotification(
 }
 
 // ─────────────────────────────────────────────
-// User Email
+// User Confirmation Email
 // ─────────────────────────────────────────────
 
 export async function sendUserConfirmation(
@@ -129,12 +132,6 @@ export async function sendUserConfirmation(
   <body style="font-family: Arial, sans-serif; background:#f5f7fb; padding:40px;">
     <div style="max-width:600px; background:#ffffff; padding:40px; border-radius:10px;">
       
-      <img 
-        src="https://i.imgur.com/YOUR_PUBLIC_IMAGE.png" 
-        width="150" 
-        style="display:block; margin-bottom:30px;" 
-      />
-
       <h2>Hi ${lead.name},</h2>
 
       <p>
@@ -174,7 +171,7 @@ export async function sendUserConfirmation(
 }
 
 // ─────────────────────────────────────────────
-// Send Both Emails (API uses this)
+// Send Both Emails (Used in API)
 // ─────────────────────────────────────────────
 
 export async function sendLeadEmails(lead: LeadData): Promise<{
