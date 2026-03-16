@@ -1,4 +1,4 @@
-# AiSprint — AI Education Platform
+# AIsprint — AI Education Platform
 
 > Premium 1:1 live AI/ML education platform. Built with Next.js 14, TypeScript, TailwindCSS, and PostgreSQL. Deployed on Vercel.
 

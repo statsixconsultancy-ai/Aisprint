@@ -1,76 +1,96 @@
-import { createClient } from '@supabase/supabase-js'
-import { Blog, Category, BlogWithCategory } from './types'
+import { createClient } from "@supabase/supabase-js"
+import { Blog, Category, BlogWithCategory } from "./types"
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-// ─── Categories ──────────────────────────────────────────────
+// ─────────────────────────────────────────────
+// Categories
+// ─────────────────────────────────────────────
 
 export async function getAllCategories(): Promise<Category[]> {
   const { data, error } = await supabase
-    .from('blog_categories')
-    .select('*')
-    .order('name')
+    .from("blog_categories")
+    .select("*")
+    .order("name", { ascending: true })
 
-  if (error) throw error
-  return data || []
+  if (error) {
+    console.error("getAllCategories error:", error)
+    return []
+  }
+
+  return data ?? []
 }
 
 export async function getCategoryBySlug(slug: string): Promise<Category | null> {
   const { data, error } = await supabase
-    .from('blog_categories')
-    .select('*')
-    .eq('slug', slug)
+    .from("blog_categories")
+    .select("*")
+    .eq("slug", slug)
     .single()
 
-  if (error && error.code !== 'PGRST116') throw error
-  return data
+  if (error && error.code !== "PGRST116") {
+    console.error("getCategoryBySlug error:", error)
+    return null
+  }
+
+  return data ?? null
 }
 
-// ─── Blogs ───────────────────────────────────────────────────
+// ─────────────────────────────────────────────
+// Blogs
+// ─────────────────────────────────────────────
 
-export async function getLatestBlogs(limit: number = 6): Promise<BlogWithCategory[]> {
+export async function getLatestBlogs(
+  limit: number = 6
+): Promise<BlogWithCategory[]> {
   const { data, error } = await supabase
-    .from('blogs')
+    .from("blogs")
     .select(`
       *,
-      category_name:blog_categories(name)
+      blog_categories!inner(name)
     `)
-    .eq('status', 'published')
-    .not('published_at', 'is', null)
-    .order('published_at', { ascending: false })
+    .eq("status", "published")
+    .not("published_at", "is", null)
+    .order("published_at", { ascending: false })
     .limit(limit)
 
-  if (error) throw error
+  if (error) {
+    console.error("getLatestBlogs error:", error)
+    return []
+  }
 
-  // Transform nested category_name object
-  return (data || []).map((blog) => ({
+  return (data ?? []).map((blog: any) => ({
     ...blog,
-    category_name: blog.category_name?.name || 'Uncategorized',
+    category_name: blog.blog_categories?.name ?? "Uncategorized",
   }))
 }
 
 export async function getFeaturedBlog(): Promise<BlogWithCategory | null> {
   const { data, error } = await supabase
-    .from('blogs')
+    .from("blogs")
     .select(`
       *,
-      category_name:blog_categories(name)
+      blog_categories!inner(name)
     `)
-    .eq('status', 'published')
-    .not('published_at', 'is', null)
-    .order('published_at', { ascending: false })
+    .eq("status", "published")
+    .not("published_at", "is", null)
+    .order("published_at", { ascending: false })
     .limit(1)
-    .single()
+    .maybeSingle()
 
-  if (error && error.code !== 'PGRST116') throw error
+  if (error) {
+    console.error("getFeaturedBlog error:", error)
+    return null
+  }
+
   if (!data) return null
 
   return {
     ...data,
-    category_name: data.category_name?.name || 'Uncategorized',
+    category_name: (data as any).blog_categories?.name ?? "Uncategorized",
   }
 }
 
@@ -82,34 +102,35 @@ export async function getBlogsByCategory(
   const from = (page - 1) * pageSize
   const to = from + pageSize - 1
 
-  // Get total count
   const { count } = await supabase
-    .from('blogs')
-    .select('*', { count: 'exact', head: true })
-    .eq('category_slug', categorySlug)
-    .eq('status', 'published')
+    .from("blogs")
+    .select("*", { count: "exact", head: true })
+    .eq("category_slug", categorySlug)
+    .eq("status", "published")
 
-  // Get paginated data
   const { data, error } = await supabase
-    .from('blogs')
+    .from("blogs")
     .select(`
       *,
-      category_name:blog_categories(name)
+      blog_categories!inner(name)
     `)
-    .eq('category_slug', categorySlug)
-    .eq('status', 'published')
-    .not('published_at', 'is', null)
-    .order('published_at', { ascending: false })
+    .eq("category_slug", categorySlug)
+    .eq("status", "published")
+    .not("published_at", "is", null)
+    .order("published_at", { ascending: false })
     .range(from, to)
 
-  if (error) throw error
+  if (error) {
+    console.error("getBlogsByCategory error:", error)
+    return { blogs: [], total: 0 }
+  }
 
   return {
-    blogs: (data || []).map((blog) => ({
+    blogs: (data ?? []).map((blog: any) => ({
       ...blog,
-      category_name: blog.category_name?.name || 'Uncategorized',
+      category_name: blog.blog_categories?.name ?? "Uncategorized",
     })),
-    total: count || 0,
+    total: count ?? 0,
   }
 }
 
@@ -118,22 +139,26 @@ export async function getBlogBySlug(
   blogSlug: string
 ): Promise<BlogWithCategory | null> {
   const { data, error } = await supabase
-    .from('blogs')
+    .from("blogs")
     .select(`
       *,
-      category_name:blog_categories(name)
+      blog_categories!inner(name)
     `)
-    .eq('category_slug', categorySlug)
-    .eq('slug', blogSlug)
-    .eq('status', 'published')
-    .single()
+    .eq("category_slug", categorySlug)
+    .eq("slug", blogSlug)
+    .eq("status", "published")
+    .maybeSingle()
 
-  if (error && error.code !== 'PGRST116') throw error
+  if (error) {
+    console.error("getBlogBySlug error:", error)
+    return null
+  }
+
   if (!data) return null
 
   return {
     ...data,
-    category_name: data.category_name?.name || 'Uncategorized',
+    category_name: (data as any).blog_categories?.name ?? "Uncategorized",
   }
 }
 
@@ -143,22 +168,25 @@ export async function getRelatedBlogs(
   limit: number = 3
 ): Promise<BlogWithCategory[]> {
   const { data, error } = await supabase
-    .from('blogs')
+    .from("blogs")
     .select(`
       *,
-      category_name:blog_categories(name)
+      blog_categories!inner(name)
     `)
-    .eq('category_slug', categorySlug)
-    .eq('status', 'published')
-    .neq('id', currentBlogId)
-    .not('published_at', 'is', null)
-    .order('published_at', { ascending: false })
+    .eq("category_slug", categorySlug)
+    .eq("status", "published")
+    .neq("id", currentBlogId)
+    .not("published_at", "is", null)
+    .order("published_at", { ascending: false })
     .limit(limit)
 
-  if (error) throw error
+  if (error) {
+    console.error("getRelatedBlogs error:", error)
+    return []
+  }
 
-  return (data || []).map((blog) => ({
+  return (data ?? []).map((blog: any) => ({
     ...blog,
-    category_name: blog.category_name?.name || 'Uncategorized',
+    category_name: blog.blog_categories?.name ?? "Uncategorized",
   }))
 }
