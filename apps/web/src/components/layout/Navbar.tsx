@@ -53,12 +53,12 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-2 ml-10">
+          <div className="hidden md:flex items-center gap-6 ml-auto mr-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-6 py-3 text-base font-medium text-neutral-600 hover:text-brand-600 rounded-lg hover:bg-neutral-50 transition-all duration-150"
+                className="px-4 py-2 text-sm font-medium text-neutral-600 hover:text-brand-600 rounded-lg hover:bg-neutral-50 transition-all duration-150"
               >
                 {link.label}
               </Link>
@@ -105,7 +105,7 @@ export default function Navbar() {
                 </Link>
                 <button
                   onClick={handleSignout}
-                  className="btn-primary text-base px-6 py-3"
+                  className="text-sm px-4 py-2 bg-gradient-to-r from-purple-600 to-brand-600 hover:from-purple-700 hover:to-brand-700 rounded-xl font-medium shadow-sm hover:shadow-md transition-all duration-200"
                 >
                   Sign Out
                 </button>
@@ -184,12 +184,12 @@ export default function Navbar() {
                     >
                       Dashboard
                     </Link>
-                    <button
-                      onClick={handleSignout}
-                      className="btn-primary w-full text-base py-4"
-                    >
-                      Sign Out
-                    </button>
+                <button
+                  onClick={handleSignout}
+                  className="btn-primary w-full text-sm px-4 py-2 bg-gradient-to-r from-purple-600 to-brand-600 hover:from-purple-700 hover:to-brand-700"
+                >
+                  Sign Out
+                </button>
                   </>
                 ) : null}
               </div>

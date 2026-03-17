@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { useAuth } from '@/components/providers/AuthProvider'
 import { useRouter } from 'next/navigation'
 import DashboardSidebar from '@/components/dashboard/DashboardSidebar'
@@ -51,15 +52,23 @@ export default function DashboardPage() {
               <h1 className="text-xl font-semibold text-gray-900">Dashboard</h1>
             </div>
             <div className="flex items-center gap-3">
-              <div className="text-right">
-                <p className="text-sm font-medium text-gray-900">{user?.name}</p>
-                <p className="text-xs text-gray-500">{user?.email}</p>
-              </div>
-              <img
-                src={user?.profile_image_url || '/avatar-placeholder.png'}
-                alt="Profile"
-                className="w-10 h-10 rounded-full object-cover border-2 border-gray-200"
-              />
+              <Link href="/dashboard" className="flex items-center gap-3 -ml-2">
+                <div className="text-right">
+                  <p className="text-sm font-medium text-gray-900 truncate max-w-32">{user?.username || user?.name}</p>
+                  <p className="text-xs text-gray-500">{user?.email}</p>
+                </div>
+                <img
+                  src={user?.profile_image_url || '/avatar-placeholder.png'}
+                  alt="Profile"
+                  className="w-8 h-8 rounded-full object-cover border-2 border-gray-200"
+                />
+              </Link>
+              <button
+                onClick={() => router.push('/')}
+                className="ml-auto btn-primary text-sm px-4 py-2 bg-gradient-to-r from-purple-600 to-brand-600 hover:from-purple-700 hover:to-brand-700"
+              >
+                Home
+              </button>
             </div>
           </div>
         </div>
