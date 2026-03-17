@@ -13,7 +13,7 @@ interface ChatRequest {
 }
 
 // System prompt for the AI assistant
-const SYSTEM_PROMPT = `You are AiSprint's helpful AI Assistant. You represent AiSprint, an AI education and mentorship platform that offers:
+const SYSTEM_PROMPT = `You are AIsprint's helpful AI Assistant. You represent AIsprint, an AI education and mentorship platform that offers:
 
 1. **Courses**:
    - Machine Learning & AI course - Learn ML fundamentals, deep learning, NLP, and computer vision with 1:1 mentorship
@@ -23,7 +23,6 @@ const SYSTEM_PROMPT = `You are AiSprint's helpful AI Assistant. You represent Ai
    - Personalized 1:1 live mentorship from industry experts
    - Job placement support and career guidance
    - Startup India recognized program
-   - Swayam recognized curriculum
    - Global placement opportunities
    - Hands-on projects and real-world applications
 
@@ -86,8 +85,7 @@ Excellent! Our **Machine Learning & AI** program is comprehensive and industry-f
 **Duration:** 12–16 weeks  
 **Format:** Personalized 1:1 mentorship  
 **Mentors:** Industry experts  
-**Placement Support:** Yes — global opportunities  
-**Recognition:** Startup India partner, Swayam recognized
+**Placement Support:** Yes — global opportunities
 
 [Course details →](/ml-ai) • [Apply now →](/ml-ai/apply)`
     }
@@ -169,13 +167,12 @@ Whether you're a student, professional, or career-changer, we can craft a learni
   }
 
   // Startup India / Recognition
-  if (message.includes('startup india') || message.includes('swayam') || message.includes('recognition')) {
+  if (message.includes('startup india') || message.includes('recognition')) {
     return `### Recognition & Partnerships
 
-Yes — AiSprint is recognized and partnered for quality education:
+Yes — AIsprint is recognized and partnered for quality education:
 
 - **Startup India** recognized  
-- **Swayam** recognition for select programs  
 - Industry partnerships with leading tech companies
 
 This ensures a credible, industry-aligned curriculum and stronger career opportunities.`

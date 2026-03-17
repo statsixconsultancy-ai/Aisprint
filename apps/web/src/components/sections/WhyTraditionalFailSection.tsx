@@ -30,10 +30,9 @@ export default function WhyTraditionalFailSection() {
     <section className="section-padding bg-gray-50/80">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="badge-blue mb-4">The Comparison</span>
+          <span className="badge bg-gray-100 text-gray-900 mb-4">The Comparison</span>
           <h2 className="section-heading mt-3 mb-5">
-            Traditional Courses vs.{' '}
-            <span className="text-brand-600">The AiSprint Way</span>
+            Traditional Courses vs The AIsprint Way
           </h2>
           <p className="section-subheading mx-auto">
             Every design decision we made was to solve a problem we saw learners facing at scale.
@@ -49,9 +48,9 @@ export default function WhyTraditionalFailSection() {
                 ❌ Traditional Online Courses
               </span>
             </div>
-            <div className="px-6 py-4 border-b border-gray-200 bg-brand-600">
-              <span className="text-sm font-semibold text-brand-100 font-body uppercase tracking-wide">
-                ✅ AiSprint 1:1 Program
+            <div className="px-6 py-4 border-b border-gray-200 bg-gray-900">
+              <span className="text-sm font-semibold text-white font-body uppercase tracking-wide">
+                ✅ AIsprint 1:1 Program
               </span>
             </div>
           </div>
@@ -67,7 +66,7 @@ export default function WhyTraditionalFailSection() {
                 <span className="text-sm text-gray-600 font-body">{row.traditional}</span>
               </div>
               <div className="px-6 py-4 flex items-start gap-3">
-                <span className="text-brand-500 mt-0.5 flex-shrink-0">✓</span>
+                <span className="text-green-500 mt-0.5 flex-shrink-0">✓</span>
                 <span className="text-sm text-gray-800 font-body font-medium">{row.neura}</span>
               </div>
             </div>

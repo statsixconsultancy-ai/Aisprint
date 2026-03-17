@@ -3,7 +3,7 @@ import ApplicationForm from '@/components/forms/ApplicationForm'
 
 export const metadata: Metadata = {
   title: 'Apply for Prompt Engineering Program',
-  description: 'Apply for AiSprint\'s Prompt Engineering & LLMs 1:1 live mentorship program. 8 weeks, 16 live sessions, no coding required.',
+  description: 'Apply for AIsprint\'s Prompt Engineering & LLMs 1:1 live mentorship program. 8 weeks, 16 live sessions, no coding required.',
 }
 
 export default function PromptEngineeringApplyPage() {

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy — Aisprint',
-  description: 'Aisprint Privacy Policy. How we collect, use, and protect your personal information.',
+  title: 'Privacy Policy — AIsprint',
+  description: 'AIsprint Privacy Policy. How we collect, use, and protect your personal information.',
 }
 
 export default function PrivacyPolicyPage() {
@@ -21,7 +21,7 @@ export default function PrivacyPolicyPage() {
 
             <div>
               <h2 className="font-heading font-bold text-xl text-neutral-950 mb-3">1. Introduction</h2>
-              <p>AiSprint Technologies Pvt. Ltd. (&quot;AiSprint&quot;, &quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) is committed to protecting your personal information. This Privacy Policy explains how we collect, use, store, disclose, and safeguard your information when you visit our website at AiSprint.in or engage with our services.</p>
+              <p>AIsprint Technologies Pvt. Ltd. (&quot;AIsprint&quot;, &quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) is committed to protecting your personal information. This Privacy Policy explains how we collect, use, store, disclose, and safeguard your information when you visit our website at aisprint.in or engage with our services.</p>
               <p className="mt-3">By accessing our platform, you consent to the practices described in this policy. If you disagree with any part of this policy, please discontinue use of our services.</p>
             </div>
 
@@ -83,7 +83,7 @@ export default function PrivacyPolicyPage() {
 
             <div>
               <h2 className="font-heading font-bold text-xl text-neutral-950 mb-3">6. Data Security</h2>
-              <p>We implement industry-standard security measures including SSL/TLS encryption, encrypted database storage, access controls, and regular security audits. Our infrastructure is hosted on ISO 27001-certified data centres. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.</p>
+              <p>We implement industry-standard security measures including SSL/TLS encryption, encrypted database storage, access controls, and regular security audits. Our infrastructure is hosted in secure, monitored data centres. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.</p>
             </div>
 
             <div>
@@ -124,7 +124,7 @@ export default function PrivacyPolicyPage() {
               <h2 className="font-heading font-bold text-xl text-neutral-950 mb-3">11. Contact Us</h2>
               <p>For privacy-related queries or to exercise your rights, contact our Data Protection Officer:</p>
               <div className="mt-3 p-4 bg-gray-50 rounded-xl text-sm">
-                <p><strong>Aisprint Technologies Pvt. Ltd.</strong></p>
+                <p><strong>AIsprint Technologies Pvt. Ltd.</strong></p>
                 <p>Email: aisprintglobal@gmail.com </p>
                 <p>Address: Chennai, Tamil Nadu, India – 600032</p>
                 <p>Grievance Officer: Available Monday–Friday, 9AM–6PM IST</p>

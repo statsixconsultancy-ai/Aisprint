@@ -3,7 +3,7 @@ import ApplicationForm from '@/components/forms/ApplicationForm'
 
 export const metadata: Metadata = {
   title: 'Apply for ML & AI Program',
-  description: 'Apply for AiSprint\'s Machine Learning & AI 1:1 live mentorship program. 16 weeks, 32 live sessions, guaranteed placement support.',
+  description: 'Apply for AIsprint\'s Machine Learning & AI 1:1 live mentorship program. 16 weeks, 32 live sessions, guaranteed placement support.',
 }
 
 export default function MLAIApplyPage() {

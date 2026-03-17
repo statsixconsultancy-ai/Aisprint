@@ -1,149 +1,170 @@
+'use client'
 import Link from 'next/link'
 import { Cpu, MessageSquare } from "lucide-react";
-const courses = [
-  {
-    id: 'ml-ai',
-    badge: 'Most Popular',
-    badgeColor: 'badge-orange',
-    icon: <Cpu size={38}/>,
-    title: 'Machine Learning & AI',
-    subtitle: 'Comprehensive 16-Week Program',
-    description:
-      'From Python fundamentals to deploying production ML models. Master supervised learning, deep learning, NLP, computer vision, MLOps, and land a role as an AI/ML Engineer.',
-    duration: '16 Weeks',
-    sessions: '32 Live Sessions',
-    level: 'Beginner → Advanced',
-    outcomes: [
-      'Build & deploy 4 production ML models',
-      'Master PyTorch, TensorFlow & HuggingFace',
-      'MLOps with Docker, AWS & CI/CD pipelines',
-      'NLP pipelines & LLM fine-tuning',
-    ],
-    href: '/ml-ai',
-    applyHref: '/ml-ai/apply',
-    price: '₹79,000',
-    emiAvailable: true,
-  },
-  {
-    id: 'prompt-engineering',
-    badge: 'Hot Right Now',
-    badgeColor: 'badge-blue',
-    icon: <MessageSquare size={28}/>,
-    title: 'Prompt Engineering & LLMs',
-    subtitle: '8-Week Intensive Program',
-    description:
-      'The fastest path to working with AI professionally. Master prompt design, RAG systems, GPT-4, Claude, Gemini, and build AI-powered products that companies pay top dollar for.',
-    duration: '8 Weeks',
-    sessions: '16 Live Sessions',
-    level: 'Beginner → Professional',
-    outcomes: [
-      'Advanced prompt patterns & chain-of-thought',
-      'Build RAG systems with LangChain & LlamaIndex',
-      'Fine-tune & deploy custom LLMs',
-      'AI product development for SaaS companies',
-    ],
-    href: '/prompt-engineering',
-    applyHref: '/prompt-engineering/apply',
-    price: '₹499',
-    emiAvailable: false,
-  },
-]
 
 export default function CoursesOverviewSection() {
+  const courses = [
+    {
+      id: 'ml-ai',
+      badge: 'Most Popular',
+      icon: <Cpu size={38} />,
+      title: 'Machine Learning & AI',
+      subtitle: 'Comprehensive 16-Week Program',
+      description:
+        'From Python fundamentals to deploying production ML models. Master supervised learning, deep learning, NLP, computer vision, and MLOps.',
+      duration: '16 Weeks',
+      sessions: '32 Live Sessions',
+      level: 'Beginner → Advanced',
+      outcomes: [
+        'Build & deploy 4 production ML models',
+        'Master PyTorch, TensorFlow & HuggingFace',
+        'MLOps with Docker, AWS & CI/CD',
+        'NLP pipelines & LLM fine-tuning',
+      ],
+      href: '/ml-ai',
+      applyHref: '/ml-ai/apply',
+      price: '₹79,000',
+      emiAvailable: true,
+    },
+    {
+      id: 'prompt-engineering',
+      badge: 'Hot Right Now',
+      icon: <MessageSquare size={28} />,
+      title: 'Prompt Engineering & LLMs',
+      subtitle: '8-Week Intensive Program',
+      description:
+        'The fastest path to working with AI professionally. Master prompt design, RAG systems, GPT-4, Claude, Gemini, and build AI-powered products that companies pay top dollar for.',
+      duration: '8 Weeks',
+      sessions: '16 Live Sessions',
+      level: 'Beginner → Professional',
+      outcomes: [
+        'Advanced prompt patterns & chain-of-thought',
+        'Build RAG systems with LangChain & LlamaIndex',
+        'Fine-tune & deploy custom LLMs',
+        'AI product development for SaaS companies',
+      ],
+      href: '/prompt-engineering',
+      applyHref: '/prompt-engineering/apply',
+      price: '₹499',
+      emiAvailable: false,
+    },
+  ]
+
   return (
-    <section className="section-padding bg-gray-50">
+    <section className="py-24 bg-neutral-50">
       <div className="container-custom">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="badge-blue mb-4">Our Programs</span>
-          <h2 className="section-heading mt-3 mb-5">
-            Two Focused Paths to an{' '}
-            <span className="text-brand-600">AI Career</span>
+        <div className="max-w-4xl mx-auto text-center mb-20">
+          <span className="badge bg-neutral-100 text-neutral-700 px-6 py-3 mb-6 text-base">
+            Our Programs
+          </span>
+
+          <h2 className="text-h2 font-heading font-semibold text-text-primary mb-6 leading-tight">
+            Two Focused Paths to an AI Career
           </h2>
-          <p className="section-subheading mx-auto">
+
+          <p className="text-subtext text-text-body leading-relaxed max-w-2xl mx-auto">
             Each program is built around your outcomes, not our content library. Choose based on where you want to go.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {courses.map((course) => (
             <div
               key={course.id}
-              className="bg-white rounded-3xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="bg-white rounded-3xl border border-neutral-200 overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
             >
               {/* Card header */}
-              <div className="p-8 pb-6">
-                <div className="flex items-start justify-between mb-5">
-                  <div className="w-14 h-14 rounded-2xl bg-brand-50 flex items-center justify-center text-3xl">
+              <div className="p-10 pb-8">
+                <div className="flex items-start justify-between mb-6">
+                  <div className="w-16 h-16 rounded-2xl bg-neutral-100 flex items-center justify-center">
                     {course.icon}
                   </div>
-                  <span className={course.badgeColor}>{course.badge}</span>
+
+                  <span className="badge bg-neutral-100 text-neutral-700 px-4 py-2 text-sm">
+                    {course.badge}
+                  </span>
                 </div>
 
-                <h3 className="font-heading text-2xl font-bold text-neutral-950 mb-1">
+                <h3 className="text-h3 font-heading font-semibold text-text-primary mb-2 leading-tight">
                   {course.title}
                 </h3>
-                <p className="text-xs font-semibold text-brand-500 font-body mb-3 uppercase tracking-wide">
+
+                <p className="text-small font-medium text-neutral-500 uppercase tracking-wide mb-4">
                   {course.subtitle}
                 </p>
-                <p className="text-sm text-gray-600 leading-relaxed font-body">
+
+                {/* SMALLER DESCRIPTION */}
+                <p className="text-sm text-text-body leading-relaxed">
                   {course.description}
                 </p>
               </div>
 
               {/* Stats row */}
-              <div className="px-8 py-4 border-y border-gray-100 grid grid-cols-3 gap-4">
+              <div className="px-10 py-6 border-y border-neutral-100 grid grid-cols-3 gap-6">
                 {[
                   { label: 'Duration', value: course.duration },
                   { label: 'Live 1:1', value: course.sessions },
                   { label: 'Level', value: course.level },
                 ].map((stat) => (
                   <div key={stat.label}>
-                    <p className="text-xs text-gray-400 font-body mb-0.5">{stat.label}</p>
-                    <p className="text-xs font-semibold text-gray-800 font-body">{stat.value}</p>
+                    <p className="text-small text-neutral-400 mb-1">
+                      {stat.label}
+                    </p>
+
+                    <p className="text-base font-semibold text-text-primary">
+                      {stat.value}
+                    </p>
                   </div>
                 ))}
               </div>
 
               {/* Outcomes */}
-              <div className="px-8 py-5">
-                <p className="text-xs font-semibold text-gray-500 font-body mb-3 uppercase tracking-wide">
-                  What you&apos;ll achieve
+              <div className="px-10 py-8">
+                <p className="text-small font-semibold text-neutral-500 mb-4 uppercase tracking-wide">
+                  What you'll achieve
                 </p>
+
                 <ul className="flex flex-col gap-2">
                   {course.outcomes.map((outcome) => (
-                    <li key={outcome} className="flex items-start gap-2.5">
-                      <span className="text-brand-500 mt-0.5 flex-shrink-0">
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    <li key={outcome} className="flex items-start gap-3">
+                      <span className="text-neutral-500 mt-1 flex-shrink-0">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2.5}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M5 13l4 4L19 7"
+                          />
                         </svg>
                       </span>
-                      <span className="text-sm text-gray-700 font-body">{outcome}</span>
+
+                      {/* SMALLER OUTCOME TEXT */}
+                      <span className="text-sm text-text-secondary">
+                        {outcome}
+                      </span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              {/* Price + CTA */}
-              <div className="px-8 pb-8 pt-2">
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <p className="text-xs text-gray-400 font-body">Total investment</p>
-                    <p className="text-2xl font-heading font-bold text-neutral-950">{course.price}</p>
-                  </div>
-                  {course.emiAvailable && (
-  <span className="badge bg-green-50 text-green-700">
-    EMI Available
-  </span>
-)}
-
-                </div>
-                <div className="flex gap-3">
-                  <Link href={course.applyHref} className="btn-primary flex-1 justify-center">
+              {/* Buttons */}
+              <div className="px-10 pb-10 pt-4">
+                <div className="flex gap-4">
+                  <Link
+                    href={course.applyHref}
+                    className="btn-primary flex-1 justify-center text-sm px-4 py-2"
+                  >
                     Apply Now
                   </Link>
+
                   <Link
                     href={course.href}
-                    className="px-4 py-3 rounded-xl border border-gray-200 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors font-body"
+                    className="px-4 py-2 rounded-xl border border-neutral-200 text-sm font-medium text-neutral-600 hover:bg-neutral-50 transition-colors"
                   >
                     Learn More
                   </Link>

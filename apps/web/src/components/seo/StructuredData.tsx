@@ -2,7 +2,7 @@ export default function StructuredData() {
   const orgSchema = {
     '@context': 'https://schema.org',
     '@type': 'EducationalOrganization',
-    name: 'AiSprint',
+    name: 'AIsprint',
     url: 'https://www.goaisprint.in',
     logo: 'https://www.goaisprint.in/logo.png',
     description: 'AI & ML Education Platform with 1:1 Live Mentorship',

@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Application Received — AiSprint',
-  description: 'Thank you for applying to AiSprint. Our team will contact you within 24 hours.',
+  title: 'Application Received — AIsprint',
+  description: 'Thank you for applying to AIsprint. Our team will contact you within 24 hours.',
 }
 
 export default function ThankYouPage() {
   return (
-    <div className="pt-16 min-h-screen bg-mesh flex items-center">
+    <div className="pt-16 min-h-screen bg-white flex items-center">
       <div className="container-custom py-20">
         <div className="max-w-2xl mx-auto text-center">
           {/* Success icon */}
@@ -20,7 +20,7 @@ export default function ThankYouPage() {
 
           <h1 className="section-heading text-4xl text-gray-600 mb-12">Application Received! 🎉</h1>
           <p className="text-lg text-gray-600 leading-relaxed mb-8 font-body">
-            Thank you for applying to AiSprint. Our admissions team will review your application and reach out within 24 hours to schedule your free 30-minute orientation call.
+            Thank you for applying to AIsprint. Our admissions team will review your application and reach out within 24 hours to schedule your free 30-minute orientation call.
           </p>
 
           {/* What to expect */}
@@ -50,7 +50,7 @@ export default function ThankYouPage() {
                 },
               ].map((item) => (
                 <li key={item.step} className="flex items-start gap-4">
-                  <span className="w-7 h-7 rounded-full bg-brand-600 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 font-body mt-0.5">
+                  <span className="w-7 h-7 rounded-full bg-gray-900 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 font-body mt-0.5">
                     {item.step}
                   </span>
                   <div>

@@ -14,6 +14,8 @@ const footerLinks = {
   Legal: [
     { label: 'Privacy Policy', href: '/policies/privacy' },
     { label: 'Terms & Conditions', href: '/policies/terms' },
+  ],
+  Compliances: [
     { label: 'Cookie Policy', href: '/policies/cookie' },
     { label: 'Refund & Cancellation Policy', href: '/policies/refund' },
   ],
@@ -31,7 +33,7 @@ const socialLinks = [
   },
   {
     name: 'X',
-    href: 'https://x.com/yourusername',
+    href: 'https://x.com/goaisprint?s=11',
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -40,10 +42,25 @@ const socialLinks = [
   },
   {
     name: 'Facebook',
-    href: 'https://facebook.com/yourusername',
+    href: 'https://www.facebook.com/share/1BNLn4EXUp/?mibextid=wwXIfr',
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
+      </svg>
+    ),
+  },
+  {
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/company/aisprint-academy/',
+    icon: (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M19 0h-14C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.761 
+        0 5-2.239 5-5V5c0-2.761-2.239-5-5-5zM7.09 20.452H3.545V9h3.545v11.452zM5.318 
+        7.433a2.055 2.055 0 1 1 0-4.11 2.055 2.055 0 0 1 0 4.11zM20.452 
+        20.452h-3.545v-5.605c0-1.337-.026-3.057-1.864-3.057-1.866 
+        0-2.151 1.458-2.151 2.965v5.697h-3.545V9h3.405v1.561h.048c.474-.9 
+        1.632-1.848 3.357-1.848 3.592 0 4.256 2.365 4.256 
+        5.441v6.298z"/>
       </svg>
     ),
   },
@@ -53,54 +70,10 @@ export default function Footer() {
   return (
     <footer className="bg-neutral-950 text-gray-400">
       <div className="container-custom py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
-
-          {/* Brand */}
-          <div className="lg:col-span-2">
-            <Link href="/" className="inline-block mb-4">
-              <Image
-                src="/logo2.png"
-                alt="AiSprint Logo"
-                width={150}
-                height={40}
-                className="h-10 w-auto object-contain"
-                priority
-              />
-            </Link>
-
-            <p className="text-sm leading-relaxed mb-6 max-w-xs">
-              India&apos;s premier 1:1 live AI education platform. Partnered with Startup India and recognized by Swayam.
-            </p>
-
-            {/* Social Icons */}
-            <div className="flex gap-4 mb-6">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Follow us on ${social.name}`}
-                  className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-200"
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
-
-            <div className="flex flex-wrap gap-2">
-              <span className="badge bg-white/10 text-gray-300 text-xs">
-                🚀 Startup India Partner
-              </span>
-              <span className="badge bg-white/10 text-gray-300 text-xs">
-                🎓 Swayam Recognized
-              </span>
-            </div>
-          </div>
-
-          {/* Links */}
+        {/* Footer links spread in 4 columns, justified */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           {Object.entries(footerLinks).map(([title, links]) => (
-            <div key={title}>
+            <div key={title} className="flex flex-col items-start">
               <h4 className="font-heading font-semibold text-white text-sm mb-4">
                 {title}
               </h4>
@@ -121,14 +94,51 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* Brand logo and description centered above the line */}
+      <div className="container-custom flex flex-col items-center justify-center py-6">
+        <Link href="/" className="inline-block mb-2">
+          <Image
+            src="/logo2.png"
+            alt="AiSprint Logo"
+            width={150}
+            height={40}
+            className="h-10 w-auto object-contain"
+            priority
+          />
+        </Link>
+        <p className="text-sm leading-relaxed max-w-xs text-center">
+          India&apos;s premier 1:1 live AI education platform. Partnered with <span className="inline-flex items-center gap-1"><span className="text-brand-400"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 16.5L10.5 11L14.5 15L19 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /><path d="M19 7V10H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span>Startup India</span>.
+        </p>
+      </div>
+
+      {/* Bottom bar: copyright left, social right, fully responsive */}
       <div className="border-t border-white/10">
-        <div className="container-custom py-6 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-gray-500">
-            © {new Date().getFullYear()} Aisprint Technologies Pvt. Ltd. All rights reserved.
-          </p>
-          <p className="text-xs text-gray-500">
-            Chennai, Tamil Nadu, India
-          </p>
+        <div className="container-custom py-6 flex flex-col sm:flex-row items-center sm:items-center justify-between relative">
+          {/* Copyright left-aligned */}
+          <div className="w-full sm:w-auto flex justify-start mb-4 sm:mb-0">
+            <p className="text-xs text-gray-500">
+              © {new Date().getFullYear()} AIsprint Technologies Pvt. Ltd. All rights reserved.
+            </p>
+          </div>
+          {/* Social icons right-aligned, with extra right padding for chatbox */}
+          <div className="w-full sm:w-auto flex justify-end pr-0 sm:pr-12">
+            <div className="flex gap-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Follow us on ${social.name}`}
+                  className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-400"
+                  tabIndex={0}
+                  style={{ zIndex: 10 }}
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </footer>

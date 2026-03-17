@@ -55,7 +55,7 @@ export default function HowItWorksSection() {
     <section className="section-padding bg-white">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="badge-blue mb-4">The Process</span>
+          <span className="badge bg-gray-100 text-gray-900 mb-4">The Process</span>
           <h2 className="section-heading mt-3 mb-5">
             How 1:1 Learning Actually Works
           </h2>
@@ -69,18 +69,18 @@ export default function HowItWorksSection() {
             <div key={step.step} className="flex gap-6 group">
               {/* Connector line */}
               <div className="flex flex-col items-center">
-                <div className="w-12 h-12 rounded-2xl bg-brand-600 flex items-center justify-center text-white font-heading font-bold text-sm flex-shrink-0 group-hover:bg-brand-700 transition-colors">
+                <div className="w-12 h-12 rounded-2xl bg-gray-900 flex items-center justify-center text-white font-heading font-bold text-sm flex-shrink-0 group-hover:bg-gray-800 transition-colors">
                   {step.icon}
                 </div>
                 {index < steps.length - 1 && (
-                  <div className="w-0.5 flex-1 bg-gradient-to-b from-brand-200 to-brand-50 mt-2 min-h-[2rem]" />
+                  <div className="w-0.5 flex-1 bg-gradient-to-b from-gray-200 to-gray-50 mt-2 min-h-[2rem]" />
                 )}
               </div>
 
               {/* Content */}
               <div className={`${index < steps.length - 1 ? 'pb-10' : 'pb-0'} flex-1`}>
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="text-xs font-bold text-brand-400 font-body uppercase tracking-widest">
+                  <span className="text-xs font-bold text-gray-500 font-body uppercase tracking-widest">
                     STEP {step.step}
                   </span>
                   <span className="badge bg-gray-100 text-gray-500">{step.detail}</span>

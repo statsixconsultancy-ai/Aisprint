@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Inter:wght@300;400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,10 +10,9 @@
   --brand-primary: #2d3cf5;
   --brand-dark: #141554;
   --accent-orange: #ff7d12;
-
-  --text-primary: #0a0a0f;
-  --text-secondary: #4a4a6a;
-
+  --text-primary: #111111;
+  --text-secondary: #333333;
+  --text-body: #555555;
   --bg-light: #f8f9ff;
   --surface: #ffffff;
 }
@@ -26,11 +23,11 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: var(--text-primary);
   background-color: #ffffff;
   -webkit-font-smoothing: antialiased;
@@ -38,8 +35,8 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 700;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 600;
   letter-spacing: -0.02em;
 }
 
@@ -50,23 +47,23 @@ h1, h2, h3, h4, h5, h6 {
 @layer components {
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-600 text-white font-semibold rounded-xl hover:bg-brand-700 active:bg-brand-800 transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 text-sm;
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-600 text-white font-medium rounded-xl hover:bg-brand-700 active:bg-brand-800 transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 font-body text-base;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-brand-600 font-semibold rounded-xl border-2 border-brand-600 hover:bg-brand-50 active:bg-brand-100 transition-all duration-200 text-sm;
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-brand-600 font-medium rounded-xl border-2 border-brand-600 hover:bg-brand-50 active:bg-brand-100 transition-all duration-200 font-body text-base;
   }
 
   .btn-accent {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent-500 text-white font-semibold rounded-xl hover:bg-accent-600 active:bg-accent-700 transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 text-sm;
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent-500 text-white font-medium rounded-xl hover:bg-accent-600 active:bg-accent-700 transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 font-body text-base;
   }
 
   .section-heading {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-950 leading-tight tracking-tight;
+    @apply font-heading text-3xl md:text-4xl lg:text-5xl font-semibold text-neutral-950 leading-tight tracking-tight;
   }
 
   .section-subheading {
-    @apply text-lg text-gray-500 leading-relaxed max-w-2xl;
+    @apply font-body text-base md:text-lg text-gray-500 leading-relaxed max-w-2xl;
   }
 
   .card {

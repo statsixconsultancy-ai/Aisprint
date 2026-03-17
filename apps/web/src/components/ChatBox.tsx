@@ -14,7 +14,7 @@ interface Message {
 const INITIAL_MESSAGE: Message = {
   id: '0',
   content:
-    "Hello! 👋 Welcome to Aisprint. I'm your AI assistant. How can I help you today? Feel free to ask about our courses, mentorship programs, or any questions about AI and Machine Learning.",
+    "Hello! 👋 Welcome to AIsprint. I'm your AI assistant. How can I help you today? Feel free to ask about our courses, mentorship programs, or any questions about AI and Machine Learning.",
   sender: 'bot',
   timestamp: new Date(),
 }
@@ -126,7 +126,7 @@ export default function ChatBox() {
             <div className="bg-neutral-950 text-white p-4 flex items-center justify-between">
 
             <div>
-              <h3 className="font-semibold text-sm">Aisprint Assistant</h3>
+              <h3 className="font-semibold text-sm">AIsprint Assistant</h3>
               <p className="text-xs text-blue-100">Online</p>
             </div>
 

@@ -9,8 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        heading: ['DM Sans', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
+        heading: ['ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        body: ['ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+      },
+      fontSize: {
+        'h1': ['3.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+        'h2': ['2.25rem', { lineHeight: '1.2', letterSpacing: '-0.02em' }],
+        'h3': ['1.5rem', { lineHeight: '1.3', letterSpacing: '-0.02em' }],
+        'body': ['1.125rem', { lineHeight: '1.6' }],
+        'small': ['0.875rem', { lineHeight: '1.5' }],
+        'subtext': ['1.25rem', { lineHeight: '1.6' }],
       },
       colors: {
         brand: {
@@ -40,8 +48,23 @@ const config: Config = {
           950: '#451506',
         },
         neutral: {
-          950: '#0a0a0f',
-        }
+          50: '#fafafa',
+          100: '#f5f5f5',
+          200: '#e5e5e5',
+          300: '#d4d4d4',
+          400: '#a3a3a3',
+          500: '#737373',
+          600: '#525252',
+          700: '#404040',
+          800: '#262626',
+          900: '#171717',
+          950: '#111111',
+        },
+        text: {
+          primary: '#111111',
+          secondary: '#333333',
+          body: '#555555',
+        },
       },
       animation: {
         'fade-up': 'fadeUp 0.6s ease-out forwards',

@@ -95,13 +95,39 @@ export default function PromptEngineeringPage() {
         <div className="container-custom relative z-10">
           <div className="max-w-3xl">
             <div className="flex flex-wrap gap-2 mb-6">
-              <span className="badge-blue">Hot Right Now</span>
-              <span className="badge-orange">🚀 Startup India Partner</span>
-              <span className="badge bg-green-50 text-green-700">Swayam Recognized</span>
+              <span className="badge bg-gray-100 text-gray-900">Hot Right Now</span>
+              <span className="badge bg-gray-100 text-gray-900">
+                <span className="flex items-center gap-2">
+                  <span className="text-brand-600">
+                    <svg
+                      className="w-4 h-4"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5 16.5L10.5 11L14.5 15L19 10"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M19 7V10H16"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  <span>Startup India Partner</span>
+                </span>
+              </span>
             </div>
             <h1 className="section-heading text-4xl md:text-5xl mb-5">
               Prompt Engineering
-              <span className="block text-brand-600 mt-1">& LLM Systems Program</span>
+              <span className="block text-gray-900 mt-1">& LLM Systems Program</span>
             </h1>
             <p className="text-lg text-gray-600 leading-relaxed mb-8 font-body max-w-2xl">
               The fastest path to becoming an AI professional. Master prompt design, RAG systems, and LLM product development in 8 focused weeks — with a dedicated 1:1 mentor.
@@ -123,7 +149,7 @@ export default function PromptEngineeringPage() {
 
             <div className="flex flex-col sm:flex-row gap-3">
               <Link href="/prompt-engineering/apply" className="btn-primary px-8 py-4 text-base">
-                Apply Now — ₹499
+                Apply Now — ₹199
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
@@ -155,7 +181,7 @@ export default function PromptEngineeringPage() {
               { icon: '🎓', title: 'Fresh Graduates', desc: 'The fastest way to build a differentiated AI skill set before entering a competitive job market.' },
               { icon: '🌟', title: 'Freelancers', desc: 'Package AI consulting services that clients will pay premium rates for, anywhere in the world.' },
             ].map((item) => (
-              <div key={item.title} className="flex gap-4 p-5 rounded-2xl border border-gray-100 hover:border-brand-200 hover:bg-brand-50/20 transition-all">
+              <div key={item.title} className="flex gap-4 p-5 rounded-2xl border border-gray-100 hover:border-gray-200 hover:bg-gray-50 transition-all">
                 <div className="text-3xl mt-0.5">{item.icon}</div>
                 <div>
                   <h3 className="font-heading font-bold text-sm text-neutral-950 mb-1">{item.title}</h3>

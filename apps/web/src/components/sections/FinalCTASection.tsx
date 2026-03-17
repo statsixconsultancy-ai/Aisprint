@@ -2,22 +2,44 @@ import Link from 'next/link'
 
 export default function FinalCTASection() {
   return (
-    <section className="section-padding relative overflow-hidden bg-mesh">
-      {/* Noise overlay */}
-      <div className="absolute inset-0 opacity-30" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E")`
-      }} />
+    <section className="section-padding relative overflow-hidden bg-neutral-950">
 
       <div className="container-custom relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           <div className="flex justify-center gap-2 mb-6">
-            <span className="badge bg-brand-900/80 text-brand-50">🚀 Startup India Partner</span>
-            <span className="badge bg-brand-900/80 text-brand-50">🎓 Swayam Recognized</span>
+            <span className="badge bg-gray-900/80 text-white">
+              <span className="flex items-center gap-2">
+                <span className="text-brand-200">
+                  <svg
+                    className="w-4 h-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5 16.5L10.5 11L14.5 15L19 10"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M19 7V10H16"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span>Startup India Partner</span>
+              </span>
+            </span>
           </div> 
 
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-white leading-tight tracking-tight mb-6">
             The Best Time to Start Your AI Career Was Yesterday.{' '}
-            <span className="text-brand-300">The Second Best Is Now.</span>
+            <span className="text-white/80">The Second Best Is Now.</span>
           </h2>
 
           <p className="text-lg text-gray-400 leading-relaxed mb-10 max-w-xl mx-auto font-body">

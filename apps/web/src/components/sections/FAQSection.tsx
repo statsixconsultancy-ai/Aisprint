@@ -16,8 +16,8 @@ const faqs = [
     a: 'We offer a 7-day full refund policy after your first session. If the mentor isn\'t the right fit, we reassign at no cost. We would rather lose a payment than keep a student who isn\'t progressing.',
   },
   {
-    q: 'Are the Startup India and Swayam recognitions real?',
-    a: 'Yes. We are DPIIT-recognized under Startup India with registration number DIPP103457. Our curriculum quality framework is acknowledged under SWAYAM standards by the Ministry of Education. Both are verifiable on their official portals.',
+    q: 'Is the Startup India recognition real?',
+    a: 'Yes. We are DPIIT-recognized under Startup India with registration number DIPP103457. This recognition is verifiable on the official Startup India portal.',
   },
   {
     q: 'What is the placement guarantee?',
@@ -45,10 +45,10 @@ function FAQItem({ q, a }: { q: string; a: string }) {
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between py-5 text-left gap-4 group"
       >
-        <span className="font-heading font-semibold text-base text-neutral-950 group-hover:text-brand-600 transition-colors">
+        <span className="font-heading font-semibold text-base text-neutral-950 group-hover:text-gray-900 transition-colors">
           {q}
         </span>
-        <span className={`flex-shrink-0 w-6 h-6 rounded-full border-2 border-gray-200 flex items-center justify-center transition-all ${open ? 'bg-brand-600 border-brand-600 rotate-45' : 'group-hover:border-brand-300'}`}>
+        <span className={`flex-shrink-0 w-6 h-6 rounded-full border-2 border-gray-200 flex items-center justify-center transition-all ${open ? 'bg-gray-900 border-gray-900 rotate-45' : 'group-hover:border-gray-300'}`}>
           <svg className={`w-3 h-3 ${open ? 'text-white' : 'text-gray-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12M6 12h12" />
           </svg>
@@ -68,7 +68,7 @@ export default function FAQSection() {
     <section className="section-padding bg-white">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <span className="badge-blue mb-4">FAQs</span>
+          <span className="badge bg-gray-100 text-gray-900 mb-4">FAQs</span>
           <h2 className="section-heading mt-3 mb-5">
             Questions We Get All the Time
           </h2>

@@ -136,7 +136,7 @@ export async function sendUserConfirmation(
 
       <p>
         Thank you for applying to the <strong>${courseName}</strong> at 
-        <strong>AiSprint</strong>. We have successfully received your application 
+        <strong>AIsprint</strong>. We have successfully received your application 
         and our Admissions Team is reviewing your profile.
       </p>
 
@@ -155,7 +155,7 @@ export async function sendUserConfirmation(
 
       <p>
         Regards,<br/>
-        <strong>AiSprint Admissions Team</strong>
+        <strong>AIsprint Admissions Team</strong>
       </p>
 
     </div>
@@ -165,7 +165,36 @@ export async function sendUserConfirmation(
 
   return sendEmail({
     to: lead.email,
-    subject: `Application Received – ${courseName} | AiSprint`,
+    subject: `Application Received – ${courseName} | AIsprint`,
+    html,
+  })
+}
+
+// ─────────────────────────────────────────────
+// Signup Confirmation Email
+// ─────────────────────────────────────────────
+
+export async function sendSignupConfirmation(user: {
+  name: string
+  email: string
+}): Promise<boolean> {
+  const html = `
+  <html>
+  <body style="font-family: Arial, sans-serif; background:#f5f7fb; padding:40px;">
+    <div style="max-width:600px; background:#ffffff; padding:40px; border-radius:10px;">
+      <h2>Hi ${user.name},</h2>
+      <p>Thank you for creating an account with <strong>AIsprint</strong>!</p>
+      <p>Your profile has been successfully created and you can now access the dashboard to manage your courses and profile.</p>
+      <p>If you did not sign up for this account, please contact our support team immediately.</p>
+      <p>Regards,<br/><strong>AIsprint Team</strong></p>
+    </div>
+  </body>
+  </html>
+  `
+
+  return sendEmail({
+    to: user.email,
+    subject: `Welcome to AIsprint, ${user.name}!`,
     html,
   })
 }
