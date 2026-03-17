@@ -16,9 +16,7 @@ export default function SignUpPage() {
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
             Create Your Account
           </h1>
-          <p className="text-gray-600 font-body">
-            Join thousands of AI enthusiasts and start your learning journey
-          </p>
+
         </div>
 
         {/* Form Container */}

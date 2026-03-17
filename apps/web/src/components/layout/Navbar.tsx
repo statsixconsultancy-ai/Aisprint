@@ -7,8 +7,6 @@ import { useAuth } from '@/components/providers/AuthProvider'
 
 const navLinks = [
   { label: 'Courses', href: '/courses' },
-  { label: 'ML & AI', href: '/ml-ai' },
-  { label: 'Prompt Engineering', href: '/prompt-engineering' },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -41,7 +39,7 @@ export default function Navbar() {
       }`}
     >
       <div className="container-custom">
-        <nav className="flex items-center justify-between h-16 md:h-18">
+        <nav className="flex items-center justify-between h-12 md:h-10 px-4 md:px-0">
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
@@ -55,7 +53,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-2 ml-10">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -68,23 +66,20 @@ export default function Navbar() {
           </div>
 
           {/* CTA */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-6">
             {!isLoading && !isAuthenticated ? (
               <>
                 <Link
                   href="/auth/signin"
-                  className="px-6 py-3 text-base font-medium text-neutral-600 hover:text-brand-600 rounded-lg hover:bg-neutral-50 transition-all duration-150"
+                  className="btn-primary px-4 py-1 text-sm font-medium text-neutral-600 border border-neutral-200 rounded-lg bg-white/80 backdrop-blur-sm hover:bg-white hover:border-neutral-300 hover:text-brand-600 transition-all duration-150"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/auth/signup"
-                  className="btn-primary text-base px-6 py-3"
+                  className="btn-primary text-sm px-4 py-1 bg-gradient-to-r from-purple-600 to-brand-600 hover:from-purple-700 hover:to-brand-700"
                 >
                   Sign Up
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
                 </Link>
               </>
             ) : !isLoading ? (
@@ -95,7 +90,7 @@ export default function Navbar() {
                     <img
                       src={user.profile_image_url || '/avatar-placeholder.png'}
                       alt="avatar"
-                      className="w-10 h-10 rounded-full object-cover"
+                      className="w-8 h-8 rounded-full object-cover"
                     />
                     <span className="text-base font-medium text-neutral-700">
                       {user.username}
@@ -153,13 +148,13 @@ export default function Navbar() {
               <div className="mt-4 px-4 border-t border-neutral-200 pt-4">
                 {!isLoading && !isAuthenticated ? (
                   <>
-                    <Link
-                      href="/auth/signin"
-                      onClick={() => setIsOpen(false)}
-                      className="block px-6 py-4 text-base font-medium text-neutral-700 hover:text-brand-600 hover:bg-neutral-50 rounded-lg transition-all text-center mb-3"
-                    >
-                      Sign In
-                    </Link>
+                <Link
+                  href="/auth/signin"
+                  onClick={() => setIsOpen(false)}
+                  className="block px-4 py-3 text-sm font-medium text-neutral-700 hover:text-brand-600 hover:bg-neutral-50 rounded-lg transition-all text-center mb-2"
+                >
+                  Sign In
+                </Link>
                     <Link
                       href="/auth/signup"
                       onClick={() => setIsOpen(false)}
