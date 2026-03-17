@@ -4,14 +4,22 @@ import {
   hashPassword,
   isValidEmail,
   isValidPassword,
+  isValidUsername,
 } from '@/lib/auth'
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { email, password } = body
+    const { username, email, password } = body
 
     // Validate inputs
+    if (!isValidUsername(username)) {
+      return NextResponse.json(
+        { success: false, message: 'Invalid username. Use 3-30 letters, numbers, underscores only' },
+        { status: 400 }
+      )
+    }
+
     if (!isValidEmail(email)) {
       return NextResponse.json(
         { success: false, message: 'Please enter a valid email address' },
@@ -30,18 +38,27 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Check if user already exists by email only
-    const existingUser = await query(
+    // Check username uniqueness
+    const existingUsername = await query(
+      'SELECT id FROM public.users WHERE username = $1',
+      [username]
+    )
+    if (existingUsername.length > 0) {
+      return NextResponse.json(
+        { success: false, message: 'Username already taken' },
+        { status: 400 }
+      )
+    }
+
+    // Check email uniqueness
+    const existingEmail = await query(
       'SELECT id FROM public.users WHERE email = $1',
       [email]
     )
 
-    if (existingUser.length > 0) {
+    if (existingEmail.length > 0) {
       return NextResponse.json(
-        {
-          success: false,
-          message: 'Email or username already registered',
-        },
+        { success: false, message: 'Email already registered' },
         { status: 400 }
       )
     }
@@ -49,27 +66,14 @@ export async function POST(request: NextRequest) {
     // Hash password
     const passwordHash = await hashPassword(password)
 
-    // derive username from email prefix, ensure unique by adding random digits if needed
-    let baseUsername = email.split('@')[0].replace(/[^a-zA-Z0-9_]/g, '')
-    if (baseUsername.length < 3) baseUsername = baseUsername + Math.floor(Math.random()*900+100)
-    let finalUsername = baseUsername
-    // check uniqueness
-    const existing = await query(
-      'SELECT id FROM public.users WHERE username = $1',
-      [finalUsername]
-    )
-    if (existing.length > 0) {
-      finalUsername = `${baseUsername}${Math.floor(Math.random()*900+100)}`
-    }
-
-    // Create user record
+    // Create user record - use email as name placeholder for now
     const userResult = await query(
       `INSERT INTO users (name, username, email, password_hash)
        VALUES ($1, $2, $3, $4)
        RETURNING id, email, username, name`,
       [
-        email, // use email as name placeholder
-        finalUsername,
+        email.split('@')[0], // name from email prefix
+        username,
         email,
         passwordHash,
       ]

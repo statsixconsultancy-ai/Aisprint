@@ -16,7 +16,8 @@ export async function GET(request: NextRequest) {
 
     // Get user info
     const users = await query(
-      'SELECT id, name, email, username, country, bio, profile_image_url, phone, dob FROM public.users WHERE id = $1',
+      `SELECT id, name, email, username, country, bio, profile_image_url 
+       FROM public.users WHERE id = $1`,
       [userId]
     )
 

@@ -69,7 +69,7 @@ const socialLinks = [
 export default function Footer() {
   return (
     <footer className="bg-neutral-950 text-gray-400">
-      <div className="container-custom py-12">
+      <div className="container-custom py-8 md:py-12">
         {/* Footer links spread in 4 columns, justified */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           {Object.entries(footerLinks).map(([title, links]) => (

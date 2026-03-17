@@ -1,315 +1,108 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { useAuth } from '@/components/providers/AuthProvider'
+import Link from 'next/link'
 
 export default function GeneralTab() {
-  const { user, refreshUser } = useAuth()
-  const [editMode, setEditMode] = useState(false)
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    country: '',
-    bio: '',
-    phone: '',
-    dob: '',
-    profile_image_url: '',
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [message, setMessage] = useState('')
+  const { user, isLoading } = useAuth()
 
-  useEffect(() => {
-    if (user) {
-      setForm({
-        name: user.name || '',
-        email: user.email || '',
-        country: user.country || '',
-        bio: user.bio || '',
-        phone: user.phone || '',
-        dob: user.dob || '',
-        profile_image_url: user.profile_image_url || '',
-      })
-    }
-  }, [user])
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setMessage('')
-
-    try {
-      const res = await fetch('/api/user/profile', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-
-      const data = await res.json()
-
-      if (data.success) {
-        setMessage('Profile updated successfully')
-        setEditMode(false)
-        await refreshUser()
-      } else {
-        setMessage(data.message || 'Update failed')
-      }
-    } catch (error) {
-      setMessage('An error occurred while updating profile')
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target
-    setForm((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const countries = [
-    'India',
-    'United States',
-    'United Kingdom',
-    'Canada',
-    'Australia',
-    'Germany',
-    'Other',
-  ]
-
-  if (!user)
+  if (isLoading) {
     return (
-      <div className="text-center py-8">
-        <p className="text-gray-500">Loading...</p>
+      <div className="p-8 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600"></div>
       </div>
     )
+  }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-gray-900">General Information</h2>
-        <button
-          onClick={() => setEditMode(!editMode)}
-          className="px-4 py-2 text-sm font-medium text-brand-600 hover:bg-brand-50 rounded-lg transition-colors"
-        >
-          {editMode ? 'Cancel' : 'Edit'}
-        </button>
+    <div className="p-8">
+      {/* Welcome Section */}
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold text-gray-900 mb-2">
+          Welcome back, {user?.username || user?.name || 'User'}! 👋
+        </h1>
+        <p className="text-gray-600">
+          Continue your learning journey. You have 2 upcoming sessions this week.
+        </p>
       </div>
 
-      {message && (
-        <div
-          className={`p-4 rounded-xl ${
-            message.includes('successfully')
-              ? 'bg-green-50 border border-green-200'
-              : 'bg-red-50 border border-red-200'
-          }`}
-        >
-          <p
-            className={
-              message.includes('successfully')
-                ? 'text-green-600'
-                : 'text-red-600'
-            }
-          >
-            {message}
-          </p>
+      {/* Stats Grid - Empty State */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="col-span-full text-center py-12 bg-gray-50 rounded-xl border-2 border-dashed border-gray-300">
+          <div className="animate-pulse space-y-2">
+            <div className="w-12 h-12 mx-auto bg-gray-200 rounded-full"></div>
+            <p className="text-gray-500">Loading your stats...</p>
+            <p className="text-sm text-gray-400">Courses, certificates, progress</p>
+          </div>
         </div>
-      )}
+      </div>
 
-      {editMode ? (
-        <form onSubmit={handleSubmit} className="space-y-4 bg-gray-50 p-6 rounded-xl">
-          {/* Profile Picture */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Display Picture
-            </label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={async (e) => {
-                const file = e.target.files?.[0]
-                if (file) {
-                  const reader = new FileReader()
-                  reader.onload = () => {
-                    setForm((prev) => ({
-                      ...prev,
-                      profile_image_url: reader.result as string,
-                    }))
-                  }
-                  reader.readAsDataURL(file)
-                }
-              }}
-              className="w-full"
-            />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* My Courses - Empty */}
+        <div className="bg-white border border-gray-200 rounded-lg p-6">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-lg font-semibold text-gray-900">My Courses</h2>
+            <Link href="/courses" className="text-sm text-brand-600 hover:text-brand-700 font-medium">
+              Browse →
+            </Link>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Full Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              className="w-full input-field"
-            />
+          <div className="text-center py-12 text-gray-500">
+            <p className="text-lg mb-2">No courses yet</p>
+            <p className="text-sm">Enroll in a course to get started</p>
           </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Email Address
-            </label>
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              className="w-full input-field"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Country
-            </label>
-            <select
-              name="country"
-              value={form.country}
-              onChange={handleChange}
-              className="w-full input-field"
-            >
-              <option value="">Select country</option>
-              {countries.map((country) => (
-                <option key={country} value={country}>
-                  {country}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Phone Number
-            </label>
-            <input
-              type="tel"
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-              className="w-full input-field"
-              placeholder="+91 98765 43210"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Date of Birth
-            </label>
-            <input
-              type="date"
-              name="dob"
-              value={form.dob}
-              onChange={handleChange}
-              className="w-full input-field"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Bio
-            </label>
-            <textarea
-              name="bio"
-              value={form.bio}
-              onChange={handleChange}
-              rows={3}
-              className="w-full input-field"
-              placeholder="Tell us about yourself..."
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full bg-brand-600 text-white font-medium py-2 rounded-lg hover:bg-brand-700 disabled:opacity-50"
-          >
-            {isSubmitting ? 'Saving...' : 'Save Changes'}
-          </button>
-        </form>
-      ) : (
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* show profile image */}
-          {user.profile_image_url && (
-            <div className="md:col-span-2 flex justify-center">
-              <img
-                src={user.profile_image_url}
-                alt="Profile"
-                className="w-24 h-24 rounded-full object-cover"
-              />
-            </div>
-          )}
-          <div className="bg-gray-50 p-6 rounded-xl">
-            <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-2">
-              Full Name
-            </p>
-            <p className="text-lg font-semibold text-gray-900">{user.name}</p>
-          </div>
-
-          <div className="bg-gray-50 p-6 rounded-xl">
-            <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-2">
-              Username
-            </p>
-            <p className="text-lg font-semibold text-gray-900">
-              @{user.username}
-            </p>
-          </div>
-
-          <div className="bg-gray-50 p-6 rounded-xl">
-            <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-2">
-              Email Address
-            </p>
-            <p className="text-lg font-semibold text-gray-900">{user.email}</p>
-          </div>
-
-          <div className="bg-gray-50 p-6 rounded-xl">
-            <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-2">
-              Country
-            </p>
-            <p className="text-lg font-semibold text-gray-900">
-              {user.country || 'Not set'}
-            </p>
-          </div>
-
-          {user.phone && (
-            <div className="bg-gray-50 p-6 rounded-xl">
-              <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-2">
-                Phone
-              </p>
-              <p className="text-lg font-semibold text-gray-900">{user.phone}</p>
-            </div>
-          )}
-
-          {user.dob && (
-            <div className="bg-gray-50 p-6 rounded-xl">
-              <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-2">
-                Date of Birth
-              </p>
-              <p className="text-lg font-semibold text-gray-900">
-                {new Date(user.dob).toLocaleDateString()}
-              </p>
-            </div>
-          )}
-
-          {user.bio && (
-            <div className="bg-gray-50 p-6 rounded-xl md:col-span-2">
-              <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-2">
-                Bio
-              </p>
-              <p className="text-gray-900">{user.bio}</p>
-            </div>
-          )}
         </div>
-      )}
+
+        {/* Schedule - Empty */}
+        <div className="bg-white border border-gray-200 rounded-lg p-6">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-lg font-semibold text-gray-900">Schedule</h2>
+            <Link href="/dashboard/courses" className="text-sm text-brand-600 hover:text-brand-700 font-medium">
+              View All →
+            </Link>
+          </div>
+          <div className="text-center py-12 text-gray-500">
+            <p className="text-lg mb-2">No sessions scheduled</p>
+            <p className="text-sm">Sessions appear after course enrollment</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Quick Actions */}
+      <div className="mt-8 bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow duration-200">
+        <h2 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Link
+            href="/ml-ai"
+            className="flex items-center gap-3 p-4 bg-brand-50 hover:bg-brand-100 rounded-lg transition-all duration-200 hover:shadow-sm"
+          >
+            <span className="text-2xl">🤖</span>
+            <div>
+              <p className="font-medium text-gray-900">Browse Courses</p>
+              <p className="text-sm text-gray-600">Find your next learning path</p>
+            </div>
+          </Link>
+          <Link
+            href="/dashboard/certificates"
+            className="flex items-center gap-3 p-4 bg-green-50 hover:bg-green-100 rounded-lg transition-all duration-200 hover:shadow-sm"
+          >
+            <span className="text-2xl">🏆</span>
+            <div>
+              <p className="font-medium text-gray-900">View Certificates</p>
+              <p className="text-sm text-gray-600">Showcase your achievements</p>
+            </div>
+          </Link>
+          <Link
+            href="/contact"
+            className="flex items-center gap-3 p-4 bg-purple-50 hover:bg-purple-100 rounded-lg transition-all duration-200 hover:shadow-sm"
+          >
+            <span className="text-2xl">💬</span>
+            <div>
+              <p className="font-medium text-gray-900">Get Support</p>
+              <p className="text-sm text-gray-600">Need help? We're here</p>
+            </div>
+          </Link>
+        </div>
+      </div>
     </div>
   )
 }

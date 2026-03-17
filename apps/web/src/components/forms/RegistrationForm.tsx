@@ -8,6 +8,7 @@ export default function RegistrationForm() {
   const router = useRouter()
   const { signup } = useAuth()
   const [form, setForm] = useState({
+    username: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -18,6 +19,15 @@ export default function RegistrationForm() {
 
   const validate = () => {
     const newErrors: Record<string, string> = {}
+  
+    // username validation
+    if (!form.username.trim()) {
+      newErrors.username = 'Username is required'
+    } else if (form.username.length < 3) {
+      newErrors.username = 'Username must be at least 3 characters'
+    } else if (!/^[a-zA-Z0-9_]+$/.test(form.username)) {
+      newErrors.username = 'Username can only contain letters, numbers, and underscores'
+    }
   
     // only email and password required
   if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
@@ -49,7 +59,7 @@ export default function RegistrationForm() {
     setIsSubmitting(true)
 
     try {
-      await signup(form.email, form.password)
+      await signup(form.username, form.email, form.password)
       router.push('/dashboard')
     } catch (error) {
       setServerError(
@@ -74,6 +84,26 @@ export default function RegistrationForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-6">
+      {/* Username */}
+      <div>
+        <label htmlFor="username" className="label">
+          Username <span className="text-red-500">*</span>
+        </label>
+        <input
+          id="username"
+          name="username"
+          type="text"
+          placeholder="yourusername"
+          value={form.username}
+          onChange={handleChange}
+          className={`input-field ${errors.username ? 'border-red-400 focus:ring-red-400' : ''}`}
+          maxLength={20}
+        />
+        {errors.username && (
+          <p className="mt-1.5 text-xs text-red-500 font-body">{errors.username}</p>
+        )}
+      </div>
+
       {/* Email */}
       <div>
         <label htmlFor="email" className="label">

@@ -7,12 +7,18 @@ import DashboardSidebar from '@/components/dashboard/DashboardSidebar'
 import GeneralTab from '@/components/dashboard/GeneralTab'
 import CoursesTab from '@/components/dashboard/CoursesTab'
 import SettingsTab from '@/components/dashboard/SettingsTab'
+import CertificatesTab from '@/components/dashboard/CertificatesTab'
+import WishlistTab from '@/components/dashboard/WishlistTab'
 
-type Tab = 'general' | 'courses' | 'settings'
+type Tab = 'general' | 'courses' | 'certificates' | 'wishlist' | 'settings'
 
 const sidebarTabs: { id: Tab; label: string; icon: string }[] = [
-  { id: 'general', label: 'General', icon: '👤' },
-  { id: 'courses', label: 'Courses', icon: '📚' },]
+  { id: 'general', label: 'Overview', icon: '📊' },
+  { id: 'courses', label: 'My Courses', icon: '📚' },
+  { id: 'certificates', label: 'Certificates', icon: '🏆' },
+  { id: 'wishlist', label: 'Wishlist', icon: '❤️' },
+  { id: 'settings', label: 'Settings', icon: '⚙️' },
+]
 
 export default function DashboardPage() {
   const { isAuthenticated, isLoading, user } = useAuth()
@@ -21,9 +27,10 @@ export default function DashboardPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen pt-20 flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-gray-600 mb-4">Loading your dashboard...</p>
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="animate-pulse">
+          <div className="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-4"></div>
+          <div className="text-center text-gray-600">Loading dashboard...</div>
         </div>
       </div>
     )
@@ -35,33 +42,50 @@ export default function DashboardPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50 pt-20 pb-12">
-      <div className="container-custom">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Welcome, {user?.name}!
-          </h1>
-          <p className="text-gray-600">Manage your learning journey and account</p>
+    <div className="min-h-screen bg-gray-50">
+      {/* Top Header */}
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
+        <div className="container-custom">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center gap-4">
+              <h1 className="text-xl font-semibold text-gray-900">Dashboard</h1>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="text-right">
+                <p className="text-sm font-medium text-gray-900">{user?.name}</p>
+                <p className="text-xs text-gray-500">{user?.email}</p>
+              </div>
+              <img
+                src={user?.profile_image_url || '/avatar-placeholder.png'}
+                alt="Profile"
+                className="w-10 h-10 rounded-full object-cover border-2 border-gray-200"
+              />
+            </div>
+          </div>
         </div>
+      </header>
 
-        {/* Main Layout with Sidebar and Content */}
-        <div className="flex flex-col md:flex-row gap-6">
-          {/* Sidebar - Left */}
+      <div className="container-custom py-8">
+        <div className="flex gap-8">
+          {/* Sidebar */}
           <DashboardSidebar
             tabs={sidebarTabs}
             activeTab={activeTab}
             onTabChange={setActiveTab}
           />
 
-          {/* Tab Content - Right */}
-          <div className="flex-1 bg-white rounded-xl border border-gray-200 p-8">
-            {activeTab === 'general' && <GeneralTab />}
-            {activeTab === 'courses' && <CoursesTab />}
-            {activeTab === 'settings' && <SettingsTab />}
+          {/* Main Content */}
+          <div className="flex-1 min-w-0">
+            <div className="bg-white rounded-lg border border-gray-200">
+              {activeTab === 'general' && <GeneralTab />}
+              {activeTab === 'courses' && <CoursesTab />}
+              {activeTab === 'certificates' && <CertificatesTab />}
+              {activeTab === 'wishlist' && <WishlistTab />}
+              {activeTab === 'settings' && <SettingsTab />}
+            </div>
           </div>
         </div>
       </div>
-    </main>
+    </div>
   )
 }

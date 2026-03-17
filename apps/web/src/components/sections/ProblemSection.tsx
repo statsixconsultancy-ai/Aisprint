@@ -108,7 +108,7 @@ export default function ProblemSection() {
   ]
 
   return (
-    <section className="section-padding bg-white -mt-6 md:-mt-8">
+    <section className="py-20 md:py-24 lg:py-32 bg-white">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <span className="badge bg-gray-100 text-gray-900 mb-4">The Hard Truth</span>

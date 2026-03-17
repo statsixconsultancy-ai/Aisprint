@@ -46,19 +46,18 @@ export default function FinalCTASection() {
             Seats are limited to 8 students per mentor per month. We keep cohorts small so every learner gets the attention they deserve.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row items-center justify-end gap-4 mt-8">
             <Link
               href="/ml-ai/apply"
-              className="btn-primary px-8 py-4 text-base border-white/20 text-white hover:bg-white/10"
+              className="btn-primary px-6 py-3 text-sm border-white/20 text-white hover:bg-white/10"
             >
-              Apply for ML & AI Course
-
+              Apply ML & AI
             </Link>
             <Link
               href="/prompt-engineering/apply"
-              className="btn-primary px-8 py-4 text-base border-white/20 text-white hover:bg-white/10"
+              className="btn-secondary px-6 py-3 text-sm border-white/20 bg-white/10 text-white hover:bg-white/20"
             >
-              Apply for Prompt Engineering
+              Prompt Engineering
             </Link>
           </div>
 

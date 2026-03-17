@@ -7,7 +7,7 @@ export default function HeroSection() {
   const { user, isAuthenticated } = useAuth()
 
   return (
-    <section className="relative overflow-hidden bg-white pt-24 pb-20 md:pt-32 md:pb-28">
+    <section className="relative overflow-hidden bg-white pt-20 pb-24 md:pt-24 md:pb-28 lg:pt-32 lg:pb-32">
       {/* if user logged in, show tiny avatar+username at top-right of section */}
       {isAuthenticated && user && (
         <div className="absolute top-4 right-4 flex items-center gap-2">
@@ -61,8 +61,9 @@ export default function HeroSection() {
           </div>
 
           {/* Headline */}
-<h1 className="section-heading text-text-primary mb-6">
-Learn AI With a Dedicated Mentor        </h1>
+<h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-semibold text-text-primary leading-tight mb-6">
+Learn AI With a Dedicated Mentor
+</h1>
 <p className="text-lg text-text-body leading-relaxed mb-10">
   No boring pre-recorded lectures. Just real 1:1 live sessions with experts from Google, Amazon, and top Indian tech teams.
 </p>
