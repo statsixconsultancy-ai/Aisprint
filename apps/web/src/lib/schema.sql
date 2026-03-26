@@ -1,7 +1,7 @@
--- ============================================================
+
 -- EdTech Platform - Database Schema
 -- Run this against your PostgreSQL database before deploying
--- ============================================================
+-- 
 
 -- Enable UUID extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";

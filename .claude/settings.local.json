@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(tasklist /FI \"PID eq 19396\")",
-      "Bash(kill -f 19396 12796 12776)",
-      "Bash(taskkill //F //PID 19396 //PID 12796 //PID 12776)"
-    ]
-  }
-}
