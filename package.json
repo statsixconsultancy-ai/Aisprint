@@ -13,7 +13,7 @@
     "lint": "npm run lint --workspace=apps/web"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.99.3",
+    "@supabase/supabase-js": "^2.100.1",
     "latest": "^0.2.0"
   }
 }

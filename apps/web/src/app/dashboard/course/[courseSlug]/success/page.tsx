@@ -1,43 +1,35 @@
 'use client'
 
-import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import Link from 'next/link'
+import { useEffect } from "react"
+import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 const courseDetails: Record<string, { label: string }> = {
-  'ml-ai': {
-    label: 'Machine Learning & AI',
+  "ml-ai": {
+    label: "Machine Learning & AI",
   },
-  'prompt-engineering': {
-    label: 'Prompt Engineering',
+  "prompt-engineering": {
+    label: "Prompt Engineering",
   },
 }
 
-export default function PaymentSuccessPage({
-  params,
-}: {
-  params: { courseSlug: string }
-}) {
+export default function PaymentSuccessPage({ params }: { params: { courseSlug: string } }) {
   const router = useRouter()
   const details = courseDetails[params.courseSlug]
 
   useEffect(() => {
-    // Redirect to dashboard after 5 seconds
     const timer = setTimeout(() => {
-      router.push('/dashboard')
+      router.push("/dashboard")
     }, 5000)
-
     return () => clearTimeout(timer)
   }, [router])
 
   if (!details) {
     return (
       <div className="min-h-screen pt-20 px-4">
-        <div className="container-custom text-center py-12">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            Course Not Found
-          </h1>
-          <Link href="/dashboard" className="btn-primary px-6 py-3">
+        <div className="max-w-md mx-auto text-center py-12">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">Course Not Found</h1>
+          <Link href="/dashboard" className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
             Back to Dashboard
           </Link>
         </div>
@@ -46,156 +38,53 @@ export default function PaymentSuccessPage({
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-green-50 to-green-100 pt-20 pb-12 flex items-center">
-      <div className="container-custom max-w-2xl">
-        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-          {/* Success Icon */}
-          <div className="bg-gradient-to-r from-green-500 to-green-600 px-8 py-16 text-center">
-            <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg
-                className="w-16 h-16 text-green-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+    <main className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-50 pt-20 pb-12 flex items-center justify-center">
+      <div className="max-w-2xl w-full mx-auto">
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border overflow-hidden max-w-4xl mx-auto">
+          <div className="bg-gradient-to-r from-emerald-500 to-green-600 px-8 py-16 text-center text-white">
+            <div className="w-28 h-28 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-sm">
+              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-2xl">
+                <svg className="w-14 h-14 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
             </div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-3">🎉 Congratulations!</h1>
+            <p className="text-xl text-white/90">You&apos;re now enrolled in</p>
+            <p className="text-3xl md:text-4xl font-bold bg-white/20 rounded-2xl px-6 py-3 inline-block mt-2 backdrop-blur-sm">
+              {details.label}
+            </p>
           </div>
 
-          {/* Content */}
-          <div className="p-8 md:p-12 text-center space-y-6">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
-                🎉 Congratulations!
-              </h1>
-              <p className="text-xl text-gray-600 mb-2">
-                You're now enrolled in
-              </p>
-              <p className="text-3xl font-bold text-brand-600">
-                {details.label}
-              </p>
-            </div>
-
-            {/* Details */}
-            <div className="bg-green-50 border border-green-200 rounded-xl p-6 space-y-3">
-              <div className="flex items-center justify-center gap-3">
-                <svg
-                  className="w-5 h-5 text-green-600"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span className="text-green-900 font-medium">
-                  Lifetime course access
-                </span>
-              </div>
-              <div className="flex items-center justify-center gap-3">
-                <svg
-                  className="w-5 h-5 text-green-600"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span className="text-green-900 font-medium">
-                  1-on-1 mentorship access
-                </span>
-              </div>
-              <div className="flex items-center justify-center gap-3">
-                <svg
-                  className="w-5 h-5 text-green-600"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span className="text-green-900 font-medium">
-                  Download course materials
-                </span>
+          <div className="p-8 md:p-12 space-y-8">
+            <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-8 space-y-4">
+              <h3 className="text-2xl font-bold text-emerald-900 text-center">What&apos;s included</h3>
+              <div className="grid md:grid-cols-2 gap-4 text-sm">
+                <div className="flex items-center gap-3 p-3 bg-white/50 rounded-xl">
+                  <svg className="w-6 h-6 text-emerald-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  <span className="font-medium text-emerald-900">Lifetime course access</span>
+                </div>
+                <div className="flex items-center gap-3 p-3 bg-white/50 rounded-xl">
+                  <svg className="w-6 h-6 text-emerald-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  <span className="font-medium text-emerald-900">1-on-1 mentorship</span>
+                </div>
               </div>
             </div>
 
-            {/* Next Steps */}
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                What's next?
-              </h3>
-              <ul className="text-gray-700 space-y-2 text-left">
-                <li className="flex items-start gap-3">
-                  <span className="text-brand-600 font-bold">1.</span>
-                  <span>
-                    Check your email for course login credentials and welcome
-                    guide
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-brand-600 font-bold">2.</span>
-                  <span>
-                    Book your first 1-on-1 mentorship session from your
-                    dashboard
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-brand-600 font-bold">3.</span>
-                  <span>
-                    Start exploring course modules and complete projects
-                  </span>
-                </li>
-              </ul>
-            </div>
-
-            {/* CTA */}
-            <div className="pt-6 space-y-3">
+            <div className="text-center space-y-4">
               <Link
                 href="/dashboard"
-                className="btn-primary w-full justify-center py-4 text-lg"
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-2xl font-semibold text-lg hover:from-emerald-600 hover:to-green-700 shadow-xl hover:shadow-2xl transition-all duration-300"
               >
-                Go to Dashboard
+                🎯 Go to Dashboard
               </Link>
-              <p className="text-sm text-gray-500">
-                Redirecting in 5 seconds...
+              <p className="text-sm text-gray-500 italic">
+                Redirecting automatically in 5 seconds...
               </p>
-            </div>
-
-            {/* Contact */}
-            <div className="border-t border-gray-200 pt-6">
-              <p className="text-gray-700 mb-2">
-                Questions or need help getting started?
-              </p>
-              <div className="flex items-center justify-center gap-4 text-sm">
-                <a
-                  href="mailto:aisprintglobal@gmail.com"
-                  className="text-brand-600 hover:text-brand-700 font-medium"
-                >
-                  Email Support
-                </a>
-                <span className="text-gray-400">•</span>
-                <Link
-                  href="/contact"
-                  className="text-brand-600 hover:text-brand-700 font-medium"
-                >
-                  Contact Us
-                </Link>
-              </div>
             </div>
           </div>
         </div>
@@ -203,3 +92,4 @@ export default function PaymentSuccessPage({
     </main>
   )
 }
+
