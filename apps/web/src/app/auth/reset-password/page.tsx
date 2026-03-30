@@ -1,6 +1,7 @@
 'use client'
 
 import { Suspense } from 'react'
+import ResetPasswordForm from './ResetPasswordForm'
 
 export default function Page() {
   return (
@@ -11,7 +12,7 @@ export default function Page() {
         </div>
       }
     >
-      
+      <ResetPasswordForm />
     </Suspense>
   )
 }
